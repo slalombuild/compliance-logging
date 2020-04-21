@@ -1,0 +1,11 @@
+plugins {
+    id "org.jetbrains.kotlin.jvm"
+    id "io.spring.dependency-management" version "1.0.6.RELEASE"
+}
+
+dependencies {
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    implementation(project(":compliance-common-logging"))
+    implementation("org.apache.logging.log4j:log4j-api:2.13.1")
+    implementation("org.apache.logging.log4j:log4j-core:2.13.1")
+}
