@@ -1,3 +1,7 @@
+plugins {
+    kotlin("jvm")
+}
+
 dependencies {
-    //implementation("org.springframework.boot:spring-boot-starter:2.2.6.RELEASE")
+    implementation(kotlin("stdlib-jdk8"))
 }

@@ -2,6 +2,7 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
 import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
     repositories {
@@ -9,9 +10,11 @@ buildscript {
     }
 }
 
-subprojects {
-    apply(plugin = "java-library")
+plugins {
+    kotlin("jvm") version "1.3.72" apply false
+}
 
+subprojects {
     group = "com.slalom"
     version = "0.0.1-SNAPSHOT"
 
@@ -20,8 +23,15 @@ subprojects {
     }
 
     tasks.withType<JavaCompile> {
-        sourceCompatibility = JavaVersion.VERSION_11.toString()
-        targetCompatibility = JavaVersion.VERSION_11.toString()
+        sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+        targetCompatibility = JavaVersion.VERSION_1_8.toString()
+    }
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xjsr305=strict")
+            jvmTarget = JavaVersion.VERSION_1_8.toString()
+        }
     }
 
     tasks.withType<Test> {
