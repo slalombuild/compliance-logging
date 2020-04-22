@@ -24,6 +24,6 @@ public class Application {
                 .ssn("123-123-1234")
                 .build();
         log.info("No Marker: {}", user);
-        log.info(MaskType.Companion.getLOMBOK(), "Marker Lombok: {}", user);
+        log.info(MaskType.LOMBOK, "Marker Lombok: {}", user);
     }
 }
