@@ -3,9 +3,14 @@ plugins {
     id "io.spring.dependency-management" version "1.0.6.RELEASE"
 }
 
+dependencyManagement {
+    imports {
+        mavenBom 'org.apache.logging.log4j:log4j-bom:2.13.1'
+    }
+}
 dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
     implementation(project(":compliance-common-logging"))
-    implementation("org.apache.logging.log4j:log4j-api:2.13.1")
-    implementation("org.apache.logging.log4j:log4j-core:2.13.1")
+    implementation("org.apache.logging.log4j:log4j-api")
+    implementation("org.apache.logging.log4j:log4j-core")
 }
