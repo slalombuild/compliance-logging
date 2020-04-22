@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+    id "io.freefair.lombok" version "5.0.0"
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
+    id "io.spring.dependency-management" version "1.0.6.RELEASE"
+}
+
+dependencies {
+    //implementation("com.slalom:compliance-logging-log4j2:0.0.1-SNAPSHOT")
+    implementation(project(":compliance-logging-log4j2"))
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+}

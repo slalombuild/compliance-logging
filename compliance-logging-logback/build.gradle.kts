@@ -4,5 +4,5 @@ plugins {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    implementation(project(":compliance-common-logging"))
+    implementation(project(":compliance-logging-common"))
 }
