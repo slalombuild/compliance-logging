@@ -5,7 +5,7 @@ import java.util.regex.Pattern
 private const val DEFAULT_MASK = "***********"
 
 private const val JSON_REPLACEMENT_REGEX = "\"$1\":$2\"$DEFAULT_MASK\""
-private const val JSON_PATTERN = "\"(%s)\":( ?)\"([^\"]+)\""
+private const val JSON_PATTERN = "\"(%s)\":([   ]*)\"([^\"]+)\""
 
 private const val LOMBOK_REPLACEMENT_REGEX = "$1=$DEFAULT_MASK$3"
 private const val LOMBOK_PATTERN = "(%s)=([^\"]+?(, |\\)))"
@@ -18,7 +18,7 @@ abstract class DefaultService(fields: List<String>) : MaskService {
 
     protected val fieldRegex: String = fields.joinToString("|")
 
-    fun maskMessage(message: String, pattern: Pattern, replacementRegex: String): String {
+    protected fun maskMessage(message: String, pattern: Pattern, replacementRegex: String): String {
         return try {
             val buffer = StringBuffer()
             val matcher = pattern.matcher(message)

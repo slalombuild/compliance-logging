@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm")
-    id("io.spring.dependency-management") version "1.0.6.RELEASE"
+    id("io.spring.dependency-management")
     id("maven-publish")
 }
 
@@ -9,6 +9,7 @@ dependencyManagement {
         mavenBom("org.apache.logging.log4j:log4j-bom:2.13.1")
     }
 }
+
 dependencies {
     api(project(":compliance-logging-common"))
 

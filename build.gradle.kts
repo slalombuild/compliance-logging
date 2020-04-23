@@ -12,6 +12,7 @@ buildscript {
 
 plugins {
     kotlin("jvm") version "1.3.72" apply false
+    id("io.spring.dependency-management") version "1.0.9.RELEASE" apply false
 }
 
 subprojects {
@@ -30,8 +31,7 @@ subprojects {
 
     tasks.withType<KotlinCompile> {
         kotlinOptions {
-            freeCompilerArgs = listOf("-Xjsr305=strict")
-            jvmTarget = "1.8"//JavaVersion.VERSION_1_8.toString()
+            jvmTarget = JavaVersion.VERSION_1_8.toString()
         }
     }
 
