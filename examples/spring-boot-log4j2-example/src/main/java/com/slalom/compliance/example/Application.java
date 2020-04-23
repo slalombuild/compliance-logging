@@ -1,5 +1,7 @@
 package com.slalom.compliance.example;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.slalom.compliance.example.domain.User;
 import com.slalom.logging.compliance.common.MaskType;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +19,7 @@ public class Application {
     }
 
     @PostConstruct
-    public void postConstruct() {
+    public void postConstruct() throws JsonProcessingException {
         final User user = User.builder()
                 .login("mylogin")
                 .password("mypassword")
@@ -25,5 +27,6 @@ public class Application {
                 .build();
         log.info("No Marker: {}", user);
         log.info(MaskType.LOMBOK, "Marker Lombok: {}", user);
+        log.info(MaskType.JSON, "Marker Json: {}", new ObjectMapper().writeValueAsString(user));
     }
 }

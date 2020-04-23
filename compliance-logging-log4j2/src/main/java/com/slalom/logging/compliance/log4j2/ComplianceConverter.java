@@ -12,10 +12,10 @@ import org.apache.logging.log4j.core.pattern.ConverterKeys;
 import org.apache.logging.log4j.core.pattern.LogEventPatternConverter;
 import org.apache.logging.log4j.status.StatusLogger;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Plugin(name = "ComplianceConverter", category = "Converter")
 @ConverterKeys({"mm", "maskMessage"})
@@ -28,7 +28,11 @@ public class ComplianceConverter extends LogEventPatternConverter {
     private final MaskService jsonMaskService;
     private final MaskService lombokMaskService;
 
-    protected ComplianceConverter(final String[] options) {
+    public static ComplianceConverter newInstance(final String[] options) {
+        return new ComplianceConverter(options);
+    }
+
+    private ComplianceConverter(final String[] options) {
         super(NAME, NAME);
         final List<String> fields = extractFields(options);
         if (fields.isEmpty()) {
@@ -51,12 +55,9 @@ public class ComplianceConverter extends LogEventPatternConverter {
     }
 
     private List<String> extractFields(final String[] options) {
-        return Optional.ofNullable(options)
-                .filter(strings -> strings.length > 0)
-                .map(strings -> strings[0])
-                .map(String::trim)
-                .map(s -> Arrays.asList(s.split(",")))
-                .orElse(new ArrayList<>());
+        return options.length > 0
+                ? Arrays.stream(options[0].trim().split(",")).map(String::trim).collect(Collectors.toList())
+                : Collections.emptyList();
     }
 
     private String maskMessage(final String message, final Marker marker) {
