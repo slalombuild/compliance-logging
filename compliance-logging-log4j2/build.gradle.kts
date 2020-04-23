@@ -11,6 +11,7 @@ dependencyManagement {
 }
 dependencies {
     api(project(":compliance-logging-common"))
+
     implementation(group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8")
     implementation(group = "org.apache.logging.log4j", name = "log4j-api")
     implementation(group = "org.apache.logging.log4j", name = "log4j-core")
