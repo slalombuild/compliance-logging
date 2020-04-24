@@ -5,12 +5,14 @@ import com.slalom.logging.compliance.log4j2.stub.LogEventStub;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
 import org.apache.logging.log4j.core.LogEvent;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ComplianceConverterTest {
 
+    @DisplayName("Check that the converter is disabled when an empty array of options is sent")
     @Test
     public void testCheckConverterStateDisabled() {
         // given
@@ -23,6 +25,7 @@ public class ComplianceConverterTest {
         assertThat(converter.isEnabled()).isFalse();
     }
 
+    @DisplayName("Check that the converter is disabled when an array containing an empty string is sent")
     @Test
     public void testCheckConverterStateDisabled2() {
         // given
@@ -35,6 +38,7 @@ public class ComplianceConverterTest {
         assertThat(converter.isEnabled()).isFalse();
     }
 
+    @DisplayName("Check that the converter is disabled when the option sent start by ${")
     @Test
     public void testCheckConverterStateDisabled3() {
         // given
@@ -47,6 +51,7 @@ public class ComplianceConverterTest {
         assertThat(converter.isEnabled()).isFalse();
     }
 
+    @DisplayName("Check that the converter is enabled when a correct option is sent")
     @Test
     public void testCheckConverterStateEnabled() {
         // given
@@ -59,6 +64,7 @@ public class ComplianceConverterTest {
         assertThat(converter.isEnabled()).isTrue();
     }
 
+    @DisplayName("Check that the converter is masking json strings")
     @Test
     public void testMaskJsonMessage() {
         // given
@@ -77,6 +83,7 @@ public class ComplianceConverterTest {
         assertThat(actual).isEqualTo("my message with json {\"login\":\"john\",\"password\":\"***********\",\"ssn\":\"***********\"}");
     }
 
+    @DisplayName("Check that the converter is masking lombok strings")
     @Test
     public void testMaskLombokMessage() {
         // given
@@ -95,6 +102,7 @@ public class ComplianceConverterTest {
         assertThat(actual).isEqualTo("my message with lombok Employee(firstName=john, lastName=doe, ssn=***********)");
     }
 
+    @DisplayName("Check that the converter is not doing anything when no marker is used")
     @Test
     public void testWithoutMarker() {
         // given
@@ -112,6 +120,7 @@ public class ComplianceConverterTest {
         assertThat(actual).isEqualTo(message);
     }
 
+    @DisplayName("Check that the converter is not doing anything when it is disabled")
     @Test
     public void testWithPluginDisabled() {
         // given
