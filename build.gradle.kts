@@ -26,9 +26,9 @@ subprojects {
 
     dependencies {
         "testImplementation"(platform("org.junit:junit-bom:5.6.2"))
+        "testImplementation"(group = "org.assertj", name = "assertj-core", version = "3.15.0")
     }
 
-    // TODO add logic to remove examples
     publishing {
         publications {
             create<MavenPublication>("maven") {
@@ -52,6 +52,8 @@ subprojects {
                             id.set("carl")
                             name.set("Carl-Philipp Harmant")
                             email.set("carlphilipp.harmant@slalom.com")
+                            organization.set("Slalom Build")
+                            organizationUrl.set("https://www.slalombuild.com")
                         }
                     }
                     scm {

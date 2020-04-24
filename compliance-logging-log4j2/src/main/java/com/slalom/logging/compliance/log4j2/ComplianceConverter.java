@@ -39,10 +39,10 @@ public class ComplianceConverter extends LogEventPatternConverter {
         super(NAME, NAME);
         final List<String> fields = extractFields(options);
         if (fields.isEmpty()) {
-            LOGGER.warn("Compliance converter disabled, no option provided");
+            LOGGER.warn("Compliance masking disabled, no option provided");
             enabled = false;
         } else if (fields.get(0).startsWith("${")) {
-            LOGGER.warn("Compliance converter disabled, the provided option '{}' is not valid", fields.get(0));
+            LOGGER.warn("Compliance masking disabled, the provided option '{}' is not valid", fields.get(0));
             enabled = false;
             fields.clear();
         }

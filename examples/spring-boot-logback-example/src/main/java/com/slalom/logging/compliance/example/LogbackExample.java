@@ -1,4 +1,4 @@
-package com.slalom.compliance.example;
+package com.slalom.logging.compliance.example;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,10 +14,10 @@ import javax.annotation.PostConstruct;
 
 @Slf4j
 @SpringBootApplication
-public class Application {
+public class LogbackExample {
 
     public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+        SpringApplication.run(LogbackExample.class, args);
     }
 
     @PostConstruct
@@ -42,5 +42,4 @@ public class Application {
         private final String password;
         private final String ssn;
     }
-
 }
