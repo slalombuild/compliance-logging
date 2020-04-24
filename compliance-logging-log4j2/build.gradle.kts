@@ -1,11 +1,11 @@
 plugins {
-    id("io.freefair.lombok") version "5.0.0"
+    id("io.freefair.lombok") version Version.lombok_gradle_plugin
 }
 
 description = "Compliance Log4j2 library"
 
 dependencies {
-    implementation(platform("org.apache.logging.log4j:log4j-bom:2.13.1"))
+    implementation(platform("org.apache.logging.log4j:log4j-bom:${Version.log4j2}"))
     api(project(":compliance-logging-common"))
 
     implementation(group = "org.apache.logging.log4j", name = "log4j-api")

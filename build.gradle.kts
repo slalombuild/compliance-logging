@@ -15,7 +15,7 @@ plugins {
 
 subprojects {
     group = "com.slalom"
-    version = "0.0.1-SNAPSHOT"
+    version = Version.project
 
     apply(plugin = "java-library")
     apply(plugin = "maven-publish")
@@ -25,8 +25,8 @@ subprojects {
     }
 
     dependencies {
-        "testImplementation"(platform("org.junit:junit-bom:5.6.2"))
-        "testImplementation"(group = "org.assertj", name = "assertj-core", version = "3.15.0")
+        "testImplementation"(platform("org.junit:junit-bom:${Version.junit}"))
+        "testImplementation"(group = "org.assertj", name = "assertj-core", version = Version.assertj)
     }
 
     publishing {
@@ -67,8 +67,8 @@ subprojects {
     }
 
     tasks.withType<JavaCompile> {
-        sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-        targetCompatibility = JavaVersion.VERSION_1_8.toString()
+        sourceCompatibility = Version.java
+        targetCompatibility = Version.java
     }
 
     tasks.withType<Test> {
