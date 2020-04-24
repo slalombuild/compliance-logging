@@ -19,6 +19,7 @@ subprojects {
 
     apply(plugin = "java-library")
     apply(plugin = "maven-publish")
+    apply(plugin = "checkstyle")
 
     repositories {
         mavenCentral()
