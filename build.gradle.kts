@@ -1,8 +1,5 @@
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
-import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
-import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
-import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.gradle.api.tasks.testing.logging.TestLogEvent.*
 
 buildscript {
     repositories {
@@ -11,28 +8,63 @@ buildscript {
 }
 
 plugins {
-    kotlin("jvm") version "1.3.72" apply false
-    id("io.spring.dependency-management") version "1.0.9.RELEASE" apply false
+    `maven-publish`
 }
 
 subprojects {
     group = "com.slalom"
     version = "0.0.1-SNAPSHOT"
 
+    apply(plugin = "java-library")
+    apply(plugin = "maven-publish")
+
     repositories {
         mavenCentral()
-        mavenLocal()
+    }
+
+    dependencies {
+        "testImplementation"(platform("org.junit:junit-bom:5.6.2"))
+    }
+
+    // TODO add logic to remove examples
+    publishing {
+        publications {
+            create<MavenPublication>("maven") {
+                groupId = project.group.toString()
+                artifactId = project.name
+                version = project.version.toString()
+
+                from(components["java"])
+                pom {
+                    name.set(project.name)
+                    description.set(project.description)
+                    url.set("https://github.com/carlphilipp/compliance-logging")
+                    licenses {
+                        license {
+                            name.set("MIT License")
+                            url.set("https://opensource.org/licenses/MIT")
+                        }
+                    }
+                    developers {
+                        developer {
+                            id.set("carl")
+                            name.set("Carl-Philipp Harmant")
+                            email.set("carlphilipp.harmant@slalom.com")
+                        }
+                    }
+                    scm {
+                        connection.set("scm:git:git@github.com:carlphilipp/compliance-logging.git")
+                        developerConnection.set("scm:git:git@github.com:carlphilipp/compliance-logging.git")
+                        url.set("https://github.com/carlphilipp/compliance-logging")
+                    }
+                }
+            }
+        }
     }
 
     tasks.withType<JavaCompile> {
         sourceCompatibility = JavaVersion.VERSION_1_8.toString()
         targetCompatibility = JavaVersion.VERSION_1_8.toString()
-    }
-
-    tasks.withType<KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_1_8.toString()
-        }
     }
 
     tasks.withType<Test> {
