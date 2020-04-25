@@ -11,11 +11,16 @@ buildscript {
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
 plugins {
     `maven-publish`
     checkstyle
     id("com.github.sherter.google-java-format") version Version.google_format_gradle_plugin
     id("io.freefair.lombok") version Version.lombok_gradle_plugin
+    signing
 }
 
 subprojects {
@@ -27,6 +32,7 @@ subprojects {
     apply(plugin = "com.github.sherter.google-java-format")
     apply(plugin = "checkstyle")
     apply(plugin = "io.freefair.lombok")
+    apply(plugin = "signing")
 
     repositories {
         mavenCentral()
@@ -106,6 +112,9 @@ subprojects {
                     }
                 }
             }
+        }
+        signing {
+            sign(publishing.publications["maven"])
         }
     }
 }
