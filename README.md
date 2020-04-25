@@ -9,26 +9,26 @@
 
 ### Description
 
-This library has been built to help developers masking PII, PCI and PHI when logging with your favorite framework.<br />
-For instance, if you want to log a JSON String that contains some sensitive information, you would obtain something like:
+This library has been built to help developers masking PII, PCI and PHI when logging with their favorite framework.<br />
+For instance, to log a JSON String that contains some sensitive information, the result would be something like:
 
 ```log
 12:44:09 [main] INFO  MyClass - {"login":"john","password":"***********"}
 ```
 
-The library supports right now two types of objects that can be masked: JSON and Lombok.<br />
-To be able to achieve that and keep your logging framework still performant, the developer needs to indicate the framework with a mask. <br />
+The library supports right now two types of objects that can be scanned to mask sensitive information: JSON and Lombok.<br />
+To be able to achieve that and keep your logging framework still performant, the developer needs to provide the framework with a mask. <br />
 For example:
 ```log
 log.info("{}", "{\"login\":\"john\",\"password":\"mypassword\"});
 ```
-Will not mask anything, while with our mask:
+Would not mask anything, while if a mask is used like bellow:
 ```log
 log.info(MaskType.JSON, "{}", "{\"login\":\"john\",\"password":\"mypassword\"});
 ```
-It will mask the password (or any other fields listed as sensitive).
+It would mask the password (or any other fields listed as sensitive).
 
-We provide different [examples](examples) that you can checkout in our repository.
+Checkout our [examples](examples) in our repository.
 
 ### Usage with Log4j2
 Import the latest version of the library in your project:<br />
@@ -62,7 +62,7 @@ Then three things needs to be setup in your Log4j2 configuration:
 </Properties>
 ```
 
-3. Usage of our plugin pattern (%mm or %maskMessage)
+3. Add our plugin pattern (`%mm` or `%maskMessage`) in the pattern layout.
 
 ```xml
 <PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %mm{${COMPLIANCE_FIELDS}}%n"/>
@@ -108,7 +108,7 @@ dependencies {
 ```
 Then two things needs to be setup in your Logback configuration:
 
-1. Add our Layout.
+1. Add our Layout (com.slalom.logging.compliance.logback.PatternMaskingLayout).
 2. Provide the fields that needs to be masked, the separator being a coma.
 
 Here is a full example:
