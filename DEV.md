@@ -4,6 +4,12 @@
 ./gradlew clean build
 ```
 
-## Deploy to Maven Central
+## Publish to local repository
+
+```
+./gradlew publishToMavenLocal
+```
+
+## Publish to Maven Central
 
 TODO

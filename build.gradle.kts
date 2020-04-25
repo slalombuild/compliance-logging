@@ -37,54 +37,6 @@ subprojects {
         "testImplementation"(group = "org.assertj", name = "assertj-core", version = Version.assertj)
     }
 
-    checkstyle {
-        version = Version.checkstyle_gradle_plugin.toDouble()
-        isIgnoreFailures = false
-        maxErrors = 0
-        maxWarnings = 0
-    }
-
-    lombok {
-        setVersion(Version.lombok)
-    }
-
-    publishing {
-        publications {
-            create<MavenPublication>("maven") {
-                groupId = project.group.toString()
-                artifactId = project.name
-                version = project.version.toString()
-
-                from(components["java"])
-                pom {
-                    name.set(project.name)
-                    description.set(project.description)
-                    url.set("https://github.com/carlphilipp/compliance-logging")
-                    licenses {
-                        license {
-                            name.set("MIT License")
-                            url.set("https://opensource.org/licenses/MIT")
-                        }
-                    }
-                    developers {
-                        developer {
-                            id.set("carl")
-                            name.set("Carl-Philipp Harmant")
-                            email.set("carlphilipp.harmant@slalom.com")
-                            organization.set("Slalom LLC")
-                            organizationUrl.set("https://www.slalombuild.com")
-                        }
-                    }
-                    scm {
-                        connection.set("scm:git:git@github.com:carlphilipp/compliance-logging.git")
-                        developerConnection.set("scm:git:git@github.com:carlphilipp/compliance-logging.git")
-                        url.set("https://github.com/carlphilipp/compliance-logging")
-                    }
-                }
-            }
-        }
-    }
-
     tasks.withType<JavaCompile> {
         sourceCompatibility = Version.java
         targetCompatibility = Version.java
@@ -108,5 +60,52 @@ subprojects {
 
     tasks.withType<GenerateLombokConfig> {
         enabled = false
+    }
+
+    checkstyle {
+        toolVersion = Version.checkstyle_gradle_plugin
+        isIgnoreFailures = false
+        maxErrors = 0
+        maxWarnings = 0
+    }
+
+    project.afterEvaluate {
+        publishing {
+            publications {
+                create<MavenPublication>("maven") {
+                    from(components["java"])
+
+                    groupId = project.group.toString()
+                    artifactId = project.name
+                    version = project.version.toString()
+
+                    pom {
+                        name.set(project.name)
+                        description.set(project.description)
+                        url.set(GitHub.url)
+                        licenses {
+                            license {
+                                name.set(License.MIT.name)
+                                url.set(License.MIT.url)
+                            }
+                        }
+                        developers {
+                            developer {
+                                id.set(Developer.carl.id)
+                                name.set(Developer.carl.name)
+                                email.set(Developer.carl.email)
+                                organization.set(Developer.carl.organization.name)
+                                organizationUrl.set(Developer.carl.organization.url)
+                            }
+                        }
+                        scm {
+                            connection.set(GitHub.connection)
+                            developerConnection.set(GitHub.developerConnection)
+                            url.set(GitHub.url)
+                        }
+                    }
+                }
+            }
+        }
     }
 }

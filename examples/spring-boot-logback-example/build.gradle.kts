@@ -5,4 +5,6 @@ dependencies {
 }
 
 // Do not publish artifact
-project.tasks.publishMavenPublicationToMavenLocal.get().enabled = false
+project.afterEvaluate {
+    project.tasks.getByName("publishMavenPublicationToMavenLocal").enabled = false
+}
