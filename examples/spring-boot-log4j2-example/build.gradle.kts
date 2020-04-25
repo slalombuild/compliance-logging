@@ -1,7 +1,3 @@
-plugins {
-    id("io.freefair.lombok") version Version.lombok_gradle_plugin
-}
-
 dependencies {
     implementation(platform("org.springframework.boot:spring-boot-dependencies:${Version.spring}"))
     implementation(platform("org.apache.logging.log4j:log4j-bom:${Version.log4j2}"))

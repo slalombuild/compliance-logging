@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration tatus="WARN" packages="com.slalom.logging">
+    <Properties>
+        <Property name="COMPLIANCE_FIELDS">password,ssn</Property>
+        <Property name="CONSOLE_LOG_PATTERN">%d{HH:mm:ss} [%t] %-5level %logger{36} - %mm{${COMPLIANCE_FIELDS}}%n
+        </Property>
+    </Properties>
+    <appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}"/>
+        </Console>
+    </appenders>
+    <loggers>
+        <root level="info">
+            <appender-ref ref="Console"/>
+        </root>
+    </loggers>
+</Configuration>

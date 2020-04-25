@@ -75,6 +75,10 @@ public class JsonMaskServiceTest {
             "{\"password\":    \"***********\"}"),
         arguments(
             ImmutableList.of("password"),
+            "{\"password\"        :    \"1234\"}",
+            "{\"password\"        :    \"***********\"}"),
+        arguments(
+            ImmutableList.of("password"),
             "{\"password\":\"1234\"}            log after",
             "{\"password\":\"***********\"}            log after"));
   }

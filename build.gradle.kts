@@ -1,3 +1,5 @@
+import com.github.sherter.googlejavaformatgradleplugin.GoogleJavaFormat
+import io.freefair.gradle.plugins.lombok.tasks.GenerateLombokConfig
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
 import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
@@ -13,6 +15,7 @@ plugins {
     `maven-publish`
     checkstyle
     id("com.github.sherter.google-java-format") version Version.google_format_gradle_plugin
+    id("io.freefair.lombok") version Version.lombok_gradle_plugin
 }
 
 subprojects {
@@ -23,6 +26,7 @@ subprojects {
     apply(plugin = "maven-publish")
     apply(plugin = "com.github.sherter.google-java-format")
     apply(plugin = "checkstyle")
+    apply(plugin = "io.freefair.lombok")
 
     repositories {
         mavenCentral()
@@ -34,10 +38,14 @@ subprojects {
     }
 
     checkstyle {
-        version = 8.31
+        version = Version.checkstyle_gradle_plugin.toDouble()
         isIgnoreFailures = false
         maxErrors = 0
         maxWarnings = 0
+    }
+
+    lombok {
+        setVersion(Version.lombok)
     }
 
     publishing {
@@ -63,7 +71,7 @@ subprojects {
                             id.set("carl")
                             name.set("Carl-Philipp Harmant")
                             email.set("carlphilipp.harmant@slalom.com")
-                            organization.set("Slalom Build")
+                            organization.set("Slalom LLC")
                             organizationUrl.set("https://www.slalombuild.com")
                         }
                     }
@@ -94,6 +102,11 @@ subprojects {
     }
 
     tasks.withType<Checkstyle> {
-        dependsOn("googleJavaFormat")
+        val googleJavaFormatTask = tasks.withType<GoogleJavaFormat>()
+        dependsOn(googleJavaFormatTask)
+    }
+
+    tasks.withType<GenerateLombokConfig> {
+        enabled = false
     }
 }

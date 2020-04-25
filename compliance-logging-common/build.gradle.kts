@@ -1,7 +1,3 @@
-plugins {
-    id("io.freefair.lombok") version Version.lombok_gradle_plugin
-}
-
 description = "Common compliance library containing the masking logic"
 
 dependencies {
