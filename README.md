@@ -1,4 +1,4 @@
-<p align="center"><img src="docs/images/slalom.png" align="center" width="200" hspace="10" vspace="10"></p>
+<p align="center"><img src="docs/images/slalom.png" align="center" width="300" hspace="10" vspace="10"></p>
 <h6 align="center">presents</h6>
 <h3 align="center"><b>Compliance Logging</b></h3>
 <h4 align="center">A library that allows you to mask sensitive information when logging.</h4>
@@ -9,6 +9,27 @@
 
 ### Description
 
+This library has been built to help developers masking PII, PCI and PHI when logging with your favorite framework.<br />
+For instance, if you want to log a JSON String that contains some sensitive information, you would obtain something like:
+
+```java
+12:44:09 [main] INFO  MyClass - {"login":"john","password":"***********"}
+```
+
+The library supports right now two types of objects that can be masked: JSON and Lombok.<br />
+To be able to achieve that and keep your logging framework still performant, the developer needs to indicate the framework with a mask. <br />
+For example:
+```java
+LOGGER.info("{}", "{\"login\":\"john\",\"password":\"mypassword\"});
+```
+Will not mask anything, while with our mask:
+```java
+LOGGER.info(MaskType.JSON, "{}", "{\"login\":\"john\",\"password":\"mypassword\"});
+```
+It will mask the password (or any other fields listed as sensitive).
+
+We provide different [examples](/tree/master/examples) that you can checkout in our repository
+
 #### Usage with Log4j2
 
 #### Usage with Logback
@@ -16,8 +37,12 @@
 #### Questions?
 [Create an issue](https://github.com/carlphilipp/compliance-logging/issues/new)
 
+## Development
+
+[Developer notes](DEV.md)
+
 #### License
-```
+```text
 MIT License
 
 Copyright (c) 2020 Slalom LLC
