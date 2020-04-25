@@ -30,7 +30,7 @@ It will mask the password (or any other fields listed as sensitive).
 
 We provide different [examples](examples) that you can checkout in our repository.
 
-#### Usage with Log4j2
+### Usage with Log4j2
 Import the latest version of the library in your project:<br />
 Maven:
 ```xml
@@ -61,7 +61,9 @@ Then three things needs to be setup in your Log4j2 configuration:
     <Property name="COMPLIANCE_FIELDS">password,ssn</Property>
 </Properties>
 ```
+
 3. Usage of our plugin pattern (%mm or %maskMessage)
+
 ```xml
 <PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %mm{${COMPLIANCE_FIELDS}}%n"/>
 ```
@@ -88,7 +90,7 @@ Full example:
 ```
 [Simple example](examples/simple-log4j2-example) - [Spring Boot example](examples/spring-boot-log4j2-example)
 
-#### Usage with Logback
+### Usage with Logback
 Import the latest version of the library in your project:<br />
 Maven:
 ```xml
@@ -104,7 +106,12 @@ dependencies {
     implementation(group = "com.slalom", name = "compliance-logging-logback", version = "{LATEST_VERSION}")
 }
 ```
-Then your logback configuration needs to be setup with our layout. Here is a full example:
+Then two things needs to be setup in your Logback configuration:
+
+1. Add our Layout.
+2. Provide the fields that needs to be masked, the separator being a coma.
+
+Here is a full example:
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
@@ -125,13 +132,13 @@ Then your logback configuration needs to be setup with our layout. Here is a ful
 [Simple example](examples/simple-logback-example) - [Spring Boot example](examples/spring-boot-logback-example)
 
 #### Questions?
-[Create an issue](issues/new)
+[Create an issue](https://github.com/carlphilipp/compliance-logging/issues/new)
 
 ## Development
 
 [Developer notes](DEV.md)
 
-#### License
+### License
 ```text
 MIT License
 

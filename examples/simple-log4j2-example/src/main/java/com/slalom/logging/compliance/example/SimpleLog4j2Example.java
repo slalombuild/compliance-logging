@@ -16,13 +16,11 @@ public class SimpleLog4j2Example {
   public static void main(String[] args) throws JsonProcessingException {
     final User user =
         User.builder().login("mylogin").password("mypassword").ssn("123-123-1234").build();
-    LOGGER.info(
-        "=================================================================================");
+    LOGGER.info("================================================================================");
     LOGGER.info("No Marker:      {}", user);
     LOGGER.info(MaskType.LOMBOK, "Marker Lombok:  {}", user);
     LOGGER.info(MaskType.JSON, "Marker Json:    {}", new ObjectMapper().writeValueAsString(user));
-    LOGGER.info(
-        "=================================================================================");
+    LOGGER.info("================================================================================");
   }
 
   @Data
