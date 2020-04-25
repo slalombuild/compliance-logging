@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import com.google.common.collect.ImmutableList;
-import com.slalom.logging.compliance.common.impl.JsonMaskService;
+import com.slalom.logging.compliance.common.impl.JsonMaskMaskService;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -37,7 +37,7 @@ public class JsonMaskServiceTest {
   @MethodSource("source")
   public void testJsonMasking(List<String> fields, String message, String expected) {
     // given
-    MaskService maskService = new JsonMaskService(fields);
+    MaskService maskService = new JsonMaskMaskService(fields);
 
     // when
     String actual = maskService.maskMessage(message);

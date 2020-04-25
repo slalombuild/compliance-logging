@@ -104,6 +104,7 @@ public class LoggingEventStub implements ILoggingEvent {
     return null;
   }
 
+  @SuppressWarnings("deprecation")
   @Override
   public Map<String, String> getMdc() {
     return null;

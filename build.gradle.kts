@@ -2,7 +2,6 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
 import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
-import java.util.Calendar.YEAR
 
 buildscript {
     repositories {
@@ -10,15 +9,10 @@ buildscript {
     }
 }
 
-repositories {
-    mavenCentral()
-}
-
 plugins {
     `maven-publish`
     checkstyle
-    id("com.github.sherter.google-java-format") version "0.8"
-    id("com.dorongold.task-tree") version "1.5"
+    id("com.github.sherter.google-java-format") version Version.google_format_gradle_plugin
 }
 
 subprojects {
@@ -37,6 +31,13 @@ subprojects {
     dependencies {
         "testImplementation"(platform("org.junit:junit-bom:${Version.junit}"))
         "testImplementation"(group = "org.assertj", name = "assertj-core", version = Version.assertj)
+    }
+
+    checkstyle {
+        version = 8.31
+        isIgnoreFailures = false
+        maxErrors = 0
+        maxWarnings = 0
     }
 
     publishing {
@@ -76,14 +77,11 @@ subprojects {
         }
     }
 
-    // TODO: make that typed if possible
-    tasks.named("checkstyleMain") {
-        dependsOn("googleJavaFormat")
-    }
-
     tasks.withType<JavaCompile> {
         sourceCompatibility = Version.java
         targetCompatibility = Version.java
+        options.compilerArgs.add("-Xlint:unchecked")
+        options.isDeprecation = true
     }
 
     tasks.withType<Test> {
@@ -94,11 +92,8 @@ subprojects {
             exceptionFormat = FULL
         }
     }
-}
 
-checkstyle {
-    version = 8.29
-    isIgnoreFailures = false
-    maxErrors = 0
-    maxWarnings = 0
+    tasks.withType<Checkstyle> {
+        dependsOn("googleJavaFormat")
+    }
 }

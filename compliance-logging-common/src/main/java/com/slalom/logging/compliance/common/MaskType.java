@@ -20,9 +20,12 @@
  */
 package com.slalom.logging.compliance.common;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MaskType {
   public static String JSON_MARKER_NAME = "JSON-COMPLIANCE";
   public static String LOMBOK_MARKER_NAME = "LOMBOK-COMPLIANCE";

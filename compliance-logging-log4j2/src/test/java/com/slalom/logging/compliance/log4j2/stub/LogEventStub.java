@@ -50,6 +50,7 @@ public class LogEventStub implements LogEvent {
     return null;
   }
 
+  @SuppressWarnings("deprecation")
   @Override
   public Map<String, String> getContextMap() {
     return null;

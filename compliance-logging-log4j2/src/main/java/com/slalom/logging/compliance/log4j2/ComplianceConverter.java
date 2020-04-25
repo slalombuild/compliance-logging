@@ -22,8 +22,8 @@ package com.slalom.logging.compliance.log4j2;
 
 import com.slalom.logging.compliance.common.MaskService;
 import com.slalom.logging.compliance.common.MaskType;
-import com.slalom.logging.compliance.common.impl.JsonMaskService;
-import com.slalom.logging.compliance.common.impl.LombokMaskService;
+import com.slalom.logging.compliance.common.impl.JsonMaskMaskService;
+import com.slalom.logging.compliance.common.impl.LombokMaskMaskService;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -67,8 +67,8 @@ public class ComplianceConverter extends LogEventPatternConverter {
       enabled = false;
       fields.clear();
     }
-    jsonMaskService = new JsonMaskService(fields);
-    lombokMaskService = new LombokMaskService(fields);
+    jsonMaskService = new JsonMaskMaskService(fields);
+    lombokMaskService = new LombokMaskMaskService(fields);
   }
 
   private List<String> extractFields(final String[] options) {

@@ -24,8 +24,8 @@ import ch.qos.logback.classic.PatternLayout;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import com.slalom.logging.compliance.common.MaskService;
 import com.slalom.logging.compliance.common.MaskType;
-import com.slalom.logging.compliance.common.impl.JsonMaskService;
-import com.slalom.logging.compliance.common.impl.LombokMaskService;
+import com.slalom.logging.compliance.common.impl.JsonMaskMaskService;
+import com.slalom.logging.compliance.common.impl.LombokMaskMaskService;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,15 +39,20 @@ public class PatternMaskingLayout extends PatternLayout {
   @Getter(AccessLevel.PACKAGE)
   private boolean enabled = false;
 
-  private MaskService jsonMaskService = new JsonMaskService(Collections.emptyList());
-  private MaskService lombokMaskService = new LombokMaskService(Collections.emptyList());
+  private MaskService jsonMaskService = new JsonMaskMaskService(Collections.emptyList());
+  private MaskService lombokMaskService = new LombokMaskMaskService(Collections.emptyList());
 
+  /**
+   * Method called by logback with fields provided in the configuration file.
+   *
+   * @param fields the fields to be masked
+   */
   public void addFields(final String fields) {
     final List<String> regex =
         Stream.of(fields.split(",")).map(String::trim).collect(Collectors.toList());
     enabled = true;
-    jsonMaskService = new JsonMaskService(regex);
-    lombokMaskService = new LombokMaskService(regex);
+    jsonMaskService = new JsonMaskMaskService(regex);
+    lombokMaskService = new LombokMaskMaskService(regex);
   }
 
   @Override
