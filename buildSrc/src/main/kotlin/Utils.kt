@@ -17,6 +17,7 @@ fun loadPrivateKey(extra: ExtraPropertiesExtension) {
             val password = signatureProps.getProperty("signing.password") ?: throw RuntimeException("signing.password property is mandatory")
             extra.set("signing.secretKey", secretKey)
             extra.set("signing.password", password)
+            println("Signing artifacts with private key '$secretKeyFile'")
         } else {
             throw RuntimeException("$secretKeyFile does not exist.")
         }
