@@ -16,13 +16,13 @@ For instance, to log a JSON String that contains some sensitive information, the
 12:44:09 [main] INFO  MyClass - {"login":"john","password":"***********"}
 ```
 
-The library supports right now two types of objects that can be scanned to mask sensitive information: JSON and Lombok.<br />
-To be able to achieve that and keep your logging framework still performant, the developer needs to provide the framework with a mask. <br />
+At the moment, the library supports two types of objects that can be scanned to mask sensitive information: JSON and Lombok.<br />
+In order to achieve that, the developer needs to provide the framework with a custom marker. <br />
 For example:
 ```log
 log.info("{}", "{\"login\":\"john\",\"password":\"mypassword\"});
 ```
-Would not mask anything, while if a mask is used like bellow:
+Would not mask anything, while if a mask is used like below:
 ```log
 log.info(MaskType.JSON, "{}", "{\"login\":\"john\",\"password":\"mypassword\"});
 ```
@@ -108,7 +108,7 @@ dependencies {
 ```
 Then two things needs to be setup in your Logback configuration:
 
-1. Add our Layout (com.slalom.logging.compliance.logback.PatternMaskingLayout).
+1. Add our Layout (`com.slalom.logging.compliance.logback.PatternMaskingLayout`).
 2. Provide the fields that needs to be masked, the separator being a coma.
 
 Here is a full example:
