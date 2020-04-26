@@ -4,6 +4,7 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
 import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
+import org.gradle.api.tasks.testing.logging.TestLogEvent.STARTED
 
 buildscript {
     repositories {
@@ -11,15 +12,11 @@ buildscript {
     }
 }
 
-repositories {
-    mavenCentral()
-}
-
 plugins {
     `maven-publish`
     checkstyle
     signing
-    id("com.github.sherter.google-java-format") version Version.google_format_gradle_plugin
+    id("com.github.sherter.google-java-format") version Version.google_format_gradle_plugin apply false
     id("io.freefair.lombok") version Version.lombok_gradle_plugin
     id("com.dorongold.task-tree") version "1.5"
 }
@@ -58,14 +55,13 @@ subprojects {
         useJUnitPlatform()
 
         testLogging {
-            events = mutableSetOf(PASSED, FAILED, SKIPPED)
+            events = mutableSetOf(PASSED, FAILED, SKIPPED, STARTED)
             exceptionFormat = FULL
         }
     }
 
-    // FIXME: The order of the tasks seems to be still wrong
     tasks.withType<Checkstyle> {
-        dependsOn("googleJavaFormat")
+        dependsOn(tasks.withType<GoogleJavaFormat>())
     }
 
     tasks.withType<GenerateLombokConfig> {
