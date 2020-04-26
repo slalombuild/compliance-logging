@@ -113,8 +113,10 @@ subprojects {
                 }
             }
         }
-        signing {
-            sign(publishing.publications["maven"])
+        if (project.hasProperty("sign") && project.property("sign")!! == "true") {
+            signing {
+                sign(publishing.publications["maven"])
+            }
         }
     }
 }
