@@ -31,8 +31,8 @@ object License {
 }
 
 object GitHub {
-    const val connection = "scm:git:git@github.com:carlphilipp/compliance-logging.git"
-    const val developerConnection = "scm:git:git@github.com:carlphilipp/compliance-logging.git"
+    const val connection = "scm:git:git://github.com:carlphilipp/compliance-logging.git"
+    const val developerConnection = "scm:git:https://github.com/carlphilipp/compliance-logging.git"
     const val url = "https://github.com/carlphilipp/compliance-logging"
 }
 
