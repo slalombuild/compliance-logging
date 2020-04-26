@@ -13,13 +13,16 @@ buildscript {
 }
 
 plugins {
+    `java-library`
     `maven-publish`
     checkstyle
+    jacoco
     signing
     id("com.github.sherter.google-java-format") version Version.google_format_gradle_plugin apply false
-    id("io.freefair.lombok") version Version.lombok_gradle_plugin
+    id("io.freefair.lombok") version Version.lombok_gradle_plugin apply false
     id("com.dorongold.task-tree") version "1.5"
 }
+
 if (shouldSignArtifacts()) {
     loadPrivateKey(extra)
 }
@@ -34,6 +37,7 @@ subprojects {
     apply(plugin = "checkstyle")
     apply(plugin = "io.freefair.lombok")
     apply(plugin = "signing")
+    apply(plugin = "jacoco")
 
     repositories {
         mavenCentral()
@@ -42,6 +46,11 @@ subprojects {
     dependencies {
         "testImplementation"(platform("org.junit:junit-bom:${Version.junit}"))
         "testImplementation"(group = "org.assertj", name = "assertj-core", version = Version.assertj)
+    }
+
+    java {
+        withJavadocJar()
+        withSourcesJar()
     }
 
     tasks.withType<JavaCompile> {
@@ -60,6 +69,10 @@ subprojects {
         }
     }
 
+    tasks.named("build") {
+        dependsOn(project.tasks.withType<JacocoReport>())
+    }
+
     tasks.withType<Checkstyle> {
         dependsOn(tasks.withType<GoogleJavaFormat>())
     }
@@ -68,11 +81,26 @@ subprojects {
         enabled = false
     }
 
-    checkstyle {
-        toolVersion = Version.checkstyle_gradle_plugin
+    tasks.withType<JacocoReport> {
+        reports {
+            xml.isEnabled = false
+            csv.isEnabled = false
+            html.destination = file("${buildDir}/reports/jacoco")
+        }
+    }
+
+    tasks.withType<Checkstyle> {
         isIgnoreFailures = false
         maxErrors = 0
         maxWarnings = 0
+    }
+
+    checkstyle {
+        toolVersion = Version.checkstyle_gradle_plugin
+    }
+
+    jacoco {
+        toolVersion = "0.8.5"
     }
 
     project.afterEvaluate {
