@@ -22,6 +22,9 @@ plugins {
     id("io.freefair.lombok") version Version.lombok_gradle_plugin
     signing
 }
+if (shouldSignArtifacts()) {
+    loadPrivateKey(extra)
+}
 
 subprojects {
     group = "com.slalom"
@@ -113,10 +116,18 @@ subprojects {
                 }
             }
         }
-        if (project.hasProperty("sign") && project.property("sign")!! == "true") {
+        if (shouldSignArtifacts()) {
             signing {
+                val password = this.project.parent!!.extra["signing.password"] as String
+                val secretKey = this.project.parent!!.extra["signing.secretKey"] as String
+
+                useInMemoryPgpKeys(secretKey, password)
                 sign(publishing.publications["maven"])
             }
         }
     }
+}
+
+fun shouldSignArtifacts(): Boolean {
+    return project.hasProperty("sign") && project.property("sign")!! == "true"
 }

@@ -1,0 +1,2 @@
+signing.password=
+signing.secretKeyFile=/path/to/private_key
