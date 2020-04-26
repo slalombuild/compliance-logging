@@ -70,6 +70,34 @@ public class JsonMaskServiceTest {
             "Log before{\"password\": \"1234\"}     ",
             "Log before{\"password\": \"***********\"}     "),
         arguments(
+            ImmutableList.of("age"),
+            "Log before{\"age\": 1234}",
+            "Log before{\"age\": \"***********\"}"),
+        arguments(
+            ImmutableList.of("age"),
+            "Log before{\"age\":     1234  }",
+            "Log before{\"age\":     \"***********\"  }"),
+        arguments(
+            ImmutableList.of("boolean"),
+            "Log before{\"boolean\":true}",
+            "Log before{\"boolean\":\"***********\"}"),
+        arguments(
+            ImmutableList.of("boolean"),
+            "Log before{\"boolean\":false}",
+            "Log before{\"boolean\":\"***********\"}"),
+        arguments(
+            ImmutableList.of("boolean"),
+            "Log before{\"boolean\":  true }",
+            "Log before{\"boolean\":  \"***********\" }"),
+        arguments(
+            ImmutableList.of("boolean"),
+            "Log before{\"boolean\":  true      }",
+            "Log before{\"boolean\":  \"***********\"      }"),
+        arguments(
+            ImmutableList.of("null"),
+            "Log before{\"null\":null}",
+            "Log before{\"null\":\"***********\"}"),
+        arguments(
             ImmutableList.of("password"),
             "{\"password\":    \"1234\"}",
             "{\"password\":    \"***********\"}"),

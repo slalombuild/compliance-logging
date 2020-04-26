@@ -18,9 +18,10 @@ repositories {
 plugins {
     `maven-publish`
     checkstyle
+    signing
     id("com.github.sherter.google-java-format") version Version.google_format_gradle_plugin
     id("io.freefair.lombok") version Version.lombok_gradle_plugin
-    signing
+    id("com.dorongold.task-tree") version "1.5"
 }
 if (shouldSignArtifacts()) {
     loadPrivateKey(extra)
@@ -62,9 +63,9 @@ subprojects {
         }
     }
 
+    // FIXME: The order of the tasks seems to be still wrong
     tasks.withType<Checkstyle> {
-        val googleJavaFormatTask = tasks.withType<GoogleJavaFormat>()
-        dependsOn(googleJavaFormatTask)
+        dependsOn("googleJavaFormat")
     }
 
     tasks.withType<GenerateLombokConfig> {
