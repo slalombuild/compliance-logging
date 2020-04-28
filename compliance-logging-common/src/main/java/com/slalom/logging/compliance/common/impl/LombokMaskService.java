@@ -23,21 +23,21 @@ package com.slalom.logging.compliance.common.impl;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class JsonMaskMaskService extends AbstractMaskService {
+/** This class setup the Lombok logic that needs to be apply to mask Lombok objects. */
+public class LombokMaskService extends AbstractMaskService {
 
-  private static final String JSON_REPLACEMENT_REGEX = "\"$1\"$2:$3\"" + DEFAULT_MASK + "\"$6";
-  private static final String JSON_PATTERN =
-      "\"(%s)\"([   ]*):([   ]*)(\"([^\"]+)\"|[0-9]+|true|false|null)([   ]*)";
+  private static final String LOMBOK_REPLACEMENT_REGEX = "$1=" + DEFAULT_MASK + "$3";
+  private static final String LOMBOK_PATTERN = "(%s)=([^\"]+?(, |\\)))";
 
   private final Pattern pattern;
 
-  public JsonMaskMaskService(final List<String> fields) {
+  public LombokMaskService(final List<String> fields) {
     super(fields);
-    this.pattern = Pattern.compile(String.format(JSON_PATTERN, fieldRegex));
+    this.pattern = Pattern.compile(String.format(LOMBOK_PATTERN, fieldRegex));
   }
 
   @Override
-  public String maskMessage(String message) {
-    return maskMessage(message, pattern, JSON_REPLACEMENT_REGEX);
+  public String maskMessage(final String message) {
+    return maskMessage(message, pattern, LOMBOK_REPLACEMENT_REGEX);
   }
 }

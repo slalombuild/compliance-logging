@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import com.google.common.collect.ImmutableList;
-import com.slalom.logging.compliance.common.impl.LombokMaskMaskService;
+import com.slalom.logging.compliance.common.impl.LombokMaskService;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -37,7 +37,7 @@ public class LombokMaskServiceTest {
   @MethodSource("source")
   public void test(List<String> fields, String message, String expected) {
     // given
-    MaskService maskService = new LombokMaskMaskService(fields);
+    MaskService maskService = new LombokMaskService(fields);
 
     // when
     String actual = maskService.maskMessage(message);

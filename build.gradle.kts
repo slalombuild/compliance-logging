@@ -95,6 +95,10 @@ subprojects {
         maxWarnings = 0
     }
 
+    tasks.named("checkstyleTest") {
+        enabled = false
+    }
+
     checkstyle {
         toolVersion = Version.checkstyle_gradle_plugin
     }

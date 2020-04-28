@@ -20,6 +20,14 @@
  */
 package com.slalom.logging.compliance.common;
 
+/** The main interface used in consuming libraries. */
 public interface MaskService {
+
+  /**
+   * Scan provided message and mask sensitive information.
+   *
+   * @param message the message containing elements to mask.
+   * @return the same message with elements masked or the original message if something failed.
+   */
   String maskMessage(String message);
 }

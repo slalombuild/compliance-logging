@@ -28,6 +28,11 @@ import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;
 
+/**
+ * This class contains Log4j2 markers that should be used by consuming libraries.
+ *
+ * @see com.slalom.logging.compliance.common.MaskType
+ */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MaskType {
   public static Marker JSON = MarkerManager.getMarker(JSON_MARKER_NAME);

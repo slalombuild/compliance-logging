@@ -22,8 +22,8 @@ package com.slalom.logging.compliance.log4j2;
 
 import com.slalom.logging.compliance.common.MaskService;
 import com.slalom.logging.compliance.common.MaskType;
-import com.slalom.logging.compliance.common.impl.JsonMaskMaskService;
-import com.slalom.logging.compliance.common.impl.LombokMaskMaskService;
+import com.slalom.logging.compliance.common.impl.JsonMaskService;
+import com.slalom.logging.compliance.common.impl.LombokMaskService;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -38,6 +38,7 @@ import org.apache.logging.log4j.core.pattern.ConverterKeys;
 import org.apache.logging.log4j.core.pattern.LogEventPatternConverter;
 import org.apache.logging.log4j.status.StatusLogger;
 
+/** Log4j2 component in charge of calling the right service to mask sensitive data. */
 @Plugin(name = "ComplianceConverter", category = "Converter")
 @ConverterKeys({"mm", "maskMessage"})
 public class ComplianceConverter extends LogEventPatternConverter {
@@ -67,8 +68,8 @@ public class ComplianceConverter extends LogEventPatternConverter {
       enabled = false;
       fields.clear();
     }
-    jsonMaskService = new JsonMaskMaskService(fields);
-    lombokMaskService = new LombokMaskMaskService(fields);
+    jsonMaskService = new JsonMaskService(fields);
+    lombokMaskService = new LombokMaskService(fields);
   }
 
   private List<String> extractFields(final String[] options) {

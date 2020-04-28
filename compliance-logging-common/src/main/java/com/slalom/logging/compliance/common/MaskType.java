@@ -25,6 +25,11 @@ import lombok.NoArgsConstructor;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
+/**
+ * This class contains Sl4j markers that should be used by the consuming libraries when using
+ * Logback or Slf4j. When using Log4j2 the consuming libraries should use the MaskType declared in
+ * compliance-logging-log4j
+ */
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class MaskType {
   public static String JSON_MARKER_NAME = "JSON-COMPLIANCE";
