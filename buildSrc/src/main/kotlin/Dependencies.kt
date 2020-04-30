@@ -1,6 +1,7 @@
 import org.gradle.api.JavaVersion
 
 object Version {
+    // @formatter:off
     // Project
     val java                                = JavaVersion.VERSION_1_8.toString()
     const val project                       = "0.0.1-SNAPSHOT"
@@ -19,11 +20,12 @@ object Version {
     const val checkstyle_gradle_plugin      = "8.31"
     const val google_format_gradle_plugin   = "0.8"
     const val lombok_gradle_plugin          = "5.0.0"
+    // @formatter:on
 }
 
 object Developer {
-    private val slalom = Organization(name = "Slalom LLC", url="https://www.slalombuild.com")
-    val carl = DeveloperInternal(id = "carl",name = "Carl-Philipp Harmant", email = "carlphilipp.harmant@slalom.com", organization = slalom)
+    private val slalom = Organization(name = "Slalom LLC", url = "https://www.slalombuild.com")
+    val carl = DeveloperInternal(id = "carl", name = "Carl-Philipp Harmant", email = "carlphilipp.harmant@slalom.com", organization = slalom)
 }
 
 object License {
@@ -36,6 +38,6 @@ object GitHub {
     const val url = "https://github.com/carlphilipp/compliance-logging"
 }
 
-data class Organization(val name: String, val url : String)
-data class DeveloperInternal(val id: String, val name: String, val email : String, val organization: Organization)
+data class Organization(val name: String, val url: String)
+data class DeveloperInternal(val id: String, val name: String, val email: String, val organization: Organization)
 data class LicenseInternal(val name: String, val url: String)
