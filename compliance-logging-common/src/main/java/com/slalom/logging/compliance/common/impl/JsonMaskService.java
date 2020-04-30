@@ -28,7 +28,7 @@ public class JsonMaskService extends AbstractMaskService {
 
   private static final String JSON_REPLACEMENT_REGEX = "\"$1\"$2:$3\"" + DEFAULT_MASK + "\"$6";
   private static final String JSON_PATTERN =
-      "\"(%s)\"([   ]*):([   ]*)(\"([^\"]+)\"|[0-9]+|true|false|null)([   ]*)";
+      "\"(%s)\"([\\s]*):([\\s]*)(\"([^\"]+)\"|[\\d]+|true|false|null)([\\s]*)";
 
   private final Pattern pattern;
 
