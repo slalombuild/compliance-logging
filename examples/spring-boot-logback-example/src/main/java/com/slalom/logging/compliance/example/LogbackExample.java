@@ -22,7 +22,7 @@ package com.slalom.logging.compliance.example;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.slalom.logging.compliance.common.MaskType;
+import com.slalom.logging.compliance.core.MaskType;
 import javax.annotation.PostConstruct;
 import lombok.Builder;
 import lombok.Data;

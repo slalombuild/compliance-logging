@@ -18,27 +18,16 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.slalom.logging.compliance.common.impl;
+package com.slalom.logging.compliance.core;
 
-import java.util.List;
-import java.util.regex.Pattern;
+/** The main interface used in consuming libraries. */
+public interface MaskService {
 
-/** This class setup the JSON logic that needs to be apply to mask JSON objects. */
-public class JsonMaskService extends AbstractMaskService {
-
-  private static final String JSON_REPLACEMENT_REGEX = "\"$1\"$2:$3\"" + DEFAULT_MASK + "\"$6";
-  private static final String JSON_PATTERN =
-      "\"(%s)\"([\\s]*):([\\s]*)(\"([^\"]+)\"|[\\d]+|true|false|null)([\\s]*)";
-
-  private final Pattern pattern;
-
-  public JsonMaskService(final List<String> fields) {
-    super(fields);
-    this.pattern = Pattern.compile(String.format(JSON_PATTERN, fieldRegex));
-  }
-
-  @Override
-  public String maskMessage(final String message) {
-    return maskMessage(message, pattern, JSON_REPLACEMENT_REGEX);
-  }
+  /**
+   * Scan provided message and mask sensitive information.
+   *
+   * @param message the message containing elements to mask.
+   * @return the same message with elements masked or the original message if something failed.
+   */
+  String maskMessage(String message);
 }

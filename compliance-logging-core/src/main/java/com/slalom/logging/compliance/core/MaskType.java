@@ -18,34 +18,22 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.slalom.logging.compliance.common.impl;
+package com.slalom.logging.compliance.core;
 
-import com.slalom.logging.compliance.common.MaskService;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
-abstract class AbstractMaskService implements MaskService {
-
-  protected static final String DEFAULT_MASK = "***********";
-
-  protected final String fieldRegex;
-
-  protected AbstractMaskService(final List<String> fields) {
-    fieldRegex = String.join("|", fields);
-  }
-
-  protected String maskMessage(final String message, final Pattern pattern, final String regex) {
-    try {
-      final StringBuffer buffer = new StringBuffer();
-      final Matcher matcher = pattern.matcher(message);
-      while (matcher.find()) {
-        matcher.appendReplacement(buffer, regex);
-      }
-      matcher.appendTail(buffer);
-      return buffer.toString();
-    } catch (Exception e) {
-      return message;
-    }
-  }
+/**
+ * This class contains Sl4j markers that should be used by the consuming libraries when using
+ * Logback or Slf4j. When using Log4j2 the consuming libraries should use the MaskType declared in
+ * compliance-logging-log4j
+ */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class MaskType {
+  public static String JSON_MARKER_NAME = "JSON-COMPLIANCE";
+  public static String LOMBOK_MARKER_NAME = "LOMBOK-COMPLIANCE";
+  public static Marker JSON = MarkerFactory.getMarker(JSON_MARKER_NAME);
+  public static Marker LOMBOK = MarkerFactory.getMarker(LOMBOK_MARKER_NAME);
 }

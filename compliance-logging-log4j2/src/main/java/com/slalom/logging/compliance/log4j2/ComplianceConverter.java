@@ -20,10 +20,10 @@
  */
 package com.slalom.logging.compliance.log4j2;
 
-import com.slalom.logging.compliance.common.MaskService;
-import com.slalom.logging.compliance.common.MaskType;
-import com.slalom.logging.compliance.common.impl.JsonMaskService;
-import com.slalom.logging.compliance.common.impl.LombokMaskService;
+import com.slalom.logging.compliance.core.MaskService;
+import com.slalom.logging.compliance.core.MaskType;
+import com.slalom.logging.compliance.core.impl.JsonMaskService;
+import com.slalom.logging.compliance.core.impl.LombokMaskService;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

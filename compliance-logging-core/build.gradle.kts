@@ -1,4 +1,4 @@
-description = "Common compliance library containing the masking logic"
+description = "Core compliance library containing the masking logic"
 
 dependencies {
     implementation(group = "org.slf4j", name = "slf4j-api", version = Version.slf4j)

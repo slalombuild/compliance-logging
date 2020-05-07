@@ -22,7 +22,7 @@ package com.slalom.logging.compliance.log4j2;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.slalom.logging.compliance.common.MaskType;
+import com.slalom.logging.compliance.core.MaskType;
 import com.slalom.logging.compliance.log4j2.stub.LogEventStub;
 import org.apache.logging.log4j.Marker;
 import org.apache.logging.log4j.MarkerManager;

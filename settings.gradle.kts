@@ -1,6 +1,6 @@
 rootProject.name = "compliance-logging"
 include(
-        ":compliance-logging-common",
+        ":compliance-logging-core",
         ":compliance-logging-log4j2",
         ":compliance-logging-logback",
         ":spring-boot-log4j2-example",

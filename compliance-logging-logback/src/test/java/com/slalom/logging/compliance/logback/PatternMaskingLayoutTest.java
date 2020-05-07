@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import com.slalom.logging.compliance.common.MaskType;
+import com.slalom.logging.compliance.core.MaskType;
 import com.slalom.logging.compliance.logback.stub.LoggingEventStub;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

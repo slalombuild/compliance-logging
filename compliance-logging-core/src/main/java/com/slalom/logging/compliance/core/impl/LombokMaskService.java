@@ -18,22 +18,26 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.slalom.logging.compliance.common;
+package com.slalom.logging.compliance.core.impl;
 
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-import org.slf4j.Marker;
-import org.slf4j.MarkerFactory;
+import java.util.List;
+import java.util.regex.Pattern;
 
-/**
- * This class contains Sl4j markers that should be used by the consuming libraries when using
- * Logback or Slf4j. When using Log4j2 the consuming libraries should use the MaskType declared in
- * compliance-logging-log4j
- */
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class MaskType {
-  public static String JSON_MARKER_NAME = "JSON-COMPLIANCE";
-  public static String LOMBOK_MARKER_NAME = "LOMBOK-COMPLIANCE";
-  public static Marker JSON = MarkerFactory.getMarker(JSON_MARKER_NAME);
-  public static Marker LOMBOK = MarkerFactory.getMarker(LOMBOK_MARKER_NAME);
+/** This class setup the Lombok logic that needs to be apply to mask Lombok objects. */
+public class LombokMaskService extends BaseMaskService {
+
+  private static final String LOMBOK_REPLACEMENT_REGEX = "$1=" + DEFAULT_MASK + "$3";
+  private static final String LOMBOK_PATTERN = "(%s)=([^\"]+?(, |\\)))";
+
+  private final Pattern pattern;
+
+  public LombokMaskService(final List<String> fields) {
+    super(fields);
+    this.pattern = Pattern.compile(String.format(LOMBOK_PATTERN, fieldRegex));
+  }
+
+  @Override
+  public String maskMessage(final String message) {
+    return maskMessage(message, pattern, LOMBOK_REPLACEMENT_REGEX);
+  }
 }

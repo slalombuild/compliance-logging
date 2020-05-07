@@ -18,26 +18,34 @@
  * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package com.slalom.logging.compliance.common.impl;
+package com.slalom.logging.compliance.core.impl;
 
+import com.slalom.logging.compliance.core.MaskService;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/** This class setup the Lombok logic that needs to be apply to mask Lombok objects. */
-public class LombokMaskService extends AbstractMaskService {
+abstract class BaseMaskService implements MaskService {
 
-  private static final String LOMBOK_REPLACEMENT_REGEX = "$1=" + DEFAULT_MASK + "$3";
-  private static final String LOMBOK_PATTERN = "(%s)=([^\"]+?(, |\\)))";
+  protected static final String DEFAULT_MASK = "***********";
 
-  private final Pattern pattern;
+  protected final String fieldRegex;
 
-  public LombokMaskService(final List<String> fields) {
-    super(fields);
-    this.pattern = Pattern.compile(String.format(LOMBOK_PATTERN, fieldRegex));
+  protected BaseMaskService(final List<String> fields) {
+    fieldRegex = String.join("|", fields);
   }
 
-  @Override
-  public String maskMessage(final String message) {
-    return maskMessage(message, pattern, LOMBOK_REPLACEMENT_REGEX);
+  protected String maskMessage(final String message, final Pattern pattern, final String regex) {
+    try {
+      final StringBuffer buffer = new StringBuffer();
+      final Matcher matcher = pattern.matcher(message);
+      while (matcher.find()) {
+        matcher.appendReplacement(buffer, regex);
+      }
+      matcher.appendTail(buffer);
+      return buffer.toString();
+    } catch (Exception e) {
+      return message;
+    }
   }
 }
