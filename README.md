@@ -9,7 +9,7 @@
 
 ### Description
 
-This library has been built to help developers masking PII, PCI and PHI when logging with their favorite framework.<br />
+This library has been built to help developers mask PII, PCI and PHI when logging using their favorite framework.<br />
 For instance, to log a JSON String that contains some sensitive information, the result would be something like:
 
 ```log
@@ -22,11 +22,11 @@ For example:
 ```log
 log.info("{}", "{\"login\":\"john\",\"password":\"mypassword\"});
 ```
-Would not mask anything, while if a mask is used like below:
+Would not mask anything; however, if a mask is used like below:
 ```log
 log.info(MaskType.JSON, "{}", "{\"login\":\"john\",\"password":\"mypassword\"});
 ```
-It would mask the password (or any other fields listed as sensitive).
+It would mask the password (or any other fields that have been configured as sensitive).
 
 Checkout our [examples](examples) in our repository.
 
@@ -46,7 +46,7 @@ dependencies {
     implementation(group = "com.slalom", name = "compliance-logging-log4j2", version = "{LATEST_VERSION}")
 }
 ```
-Then three things needs to be setup in your Log4j2 configuration:
+Then three things need to be setup in your Log4j2 configuration:
 1. Package scanning (to scan our plugin).
 ```xml
 <Configuration tatus="WARN" packages="com.slalom.logging">
@@ -54,7 +54,7 @@ Then three things needs to be setup in your Log4j2 configuration:
 </Configuration>
 ```
 
-2. Add a property that represents the list of fields that need to be masked, the separator being a coma.
+2. Add a property that represents the fields that need to be masked, the fields should be given as a comma separated list.
 
 ```xml
 <Properties>
@@ -106,10 +106,10 @@ dependencies {
     implementation(group = "com.slalom", name = "compliance-logging-logback", version = "{LATEST_VERSION}")
 }
 ```
-Then two things needs to be setup in your Logback configuration:
+Then two things need to be setup in your Logback configuration:
 
 1. Add our Layout (`com.slalom.logging.compliance.logback.PatternMaskingLayout`).
-2. Provide the fields that needs to be masked, the separator being a coma.
+2. Provide the fields that need to be masked, the fields should be given as a comma separated list.
 
 Here is a full example:
 ```xml
