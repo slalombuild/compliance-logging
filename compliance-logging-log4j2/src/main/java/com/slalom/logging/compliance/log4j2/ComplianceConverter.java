@@ -44,7 +44,6 @@ import org.apache.logging.log4j.status.StatusLogger;
 public class ComplianceConverter extends LogEventPatternConverter {
 
   private static final Logger LOGGER = StatusLogger.getLogger();
-  private static final String NAME = "mm";
 
   @Getter(AccessLevel.PACKAGE)
   private boolean enabled = true;
@@ -57,7 +56,7 @@ public class ComplianceConverter extends LogEventPatternConverter {
   }
 
   private ComplianceConverter(final String[] options) {
-    super(NAME, NAME);
+    super("mm", "maskMessage");
     final List<String> fields = extractFields(options);
     if (fields.isEmpty()) {
       LOGGER.warn("Compliance masking disabled, no option provided");
