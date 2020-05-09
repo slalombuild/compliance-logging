@@ -4,6 +4,7 @@
 <h4 align="center">A library that allows developers to mask sensitive information when logging.</h4>
 
 <p align="center">
+<a href="https://travis-ci.org/github/carlphilipp/compliance-logging" alt="Build Status"><img src="https://img.shields.io/travis/carlphilipp/compliance-logging?style=for-the-badge"></a>
 <a href="LICENSE" alt="Project License"><img src="https://img.shields.io/apm/l/vim-mode?style=for-the-badge"></a>
 </p>
 
