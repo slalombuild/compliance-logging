@@ -1,0 +1,27 @@
+Configuration:
+  name: Default
+  packages: com.slalom.logging
+  Properties:
+    Property:
+      - name: LOG_EXCEPTION_CONVERSION_WORD
+        value: "%xwEx"
+      - name: LOG_LEVEL_PATTERN
+        value: "%5p"
+      - name: LOG_DATEFORMAT_PATTERN
+        value: yyyy-MM-dd HH:mm:ss.SSS
+      - name: COMPLIANCE_FIELDS
+        value: password,ssn
+      - name: CONSOLE_LOG_PATTERN
+        value: "%clr{%d{${LOG_DATEFORMAT_PATTERN}}}{faint} %clr{${LOG_LEVEL_PATTERN}} %clr{%pid}{magenta} %clr{---}{faint} %clr{[%15.15t]}{faint} %clr{%-40.40c{1.}}{cyan} %clr{:}{faint} %mm{${COMPLIANCE_FIELDS}}%n${sys:LOG_EXCEPTION_CONVERSION_WORD}"
+  Appenders:
+    Console:
+      name: Console_Appender
+      target: SYSTEM_OUT
+      PatternLayout:
+        disableAnsi: false
+        pattern: ${sys:CONSOLE_LOG_PATTERN}
+  Loggers:
+    Root:
+      level: info
+      AppenderRef:
+        - ref: Console_Appender

@@ -5,6 +5,7 @@ dependencies {
     implementation(group = "org.springframework.boot", name = "spring-boot-starter-web")
     implementation(group = "org.springframework.boot", name = "spring-boot-starter-log4j2")
     implementation(project(":compliance-logging-log4j2"))
+    implementation(group = "com.fasterxml.jackson.dataformat", name= "jackson-dataformat-yaml", version = Version.jackson)
 }
 
 // Do not publish artifact
