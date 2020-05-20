@@ -4,7 +4,8 @@
 <h4 align="center">A library that allows developers to mask sensitive information when logging.</h4>
 
 <p align="center">
-<a href="https://travis-ci.org/github/carlphilipp/compliance-logging" alt="Build Status"><img src="https://img.shields.io/travis/carlphilipp/compliance-logging?style=for-the-badge"></a>
+<!-- Find a CI/CD within slalom -->
+<!-- <a href="https://travis-ci.org/github/carlphilipp/compliance-logging" alt="Build Status"><img src="https://img.shields.io/travis/carlphilipp/compliance-logging?style=for-the-badge"></a> -->
 <a href="LICENSE" alt="Project License"><img src="https://img.shields.io/apm/l/vim-mode?style=for-the-badge"></a>
 </p>
 
@@ -133,7 +134,7 @@ Here is a full example:
 [Simple example](examples/simple-logback-example) - [Spring Boot example](examples/spring-boot-logback-example)
 
 #### Questions?
-[Create an issue](https://github.com/carlphilipp/compliance-logging/issues/new)
+[Create an issue](https://github.com/SlalomBuild/compliance-logging/issues/new)
 
 ## Development
 

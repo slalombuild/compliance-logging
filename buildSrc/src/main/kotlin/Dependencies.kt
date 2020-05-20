@@ -26,6 +26,8 @@ object Version {
 object Developer {
     private val slalom = Organization(name = "Slalom LLC", url = "https://www.slalombuild.com")
     val carl = DeveloperInternal(id = "carl", name = "Carl-Philipp Harmant", email = "carlphilipp.harmant@slalom.com", organization = slalom)
+    val antonio = DeveloperInternal(id = "antonio", name = "Antonio Castillo", email = "antonio.castillo@slalom.com", organization = slalom)
+    val rishi = DeveloperInternal(id = "rishi", name = "Rishi Singh", email = "rishis@slalom.com", organization = slalom)
 }
 
 object License {
@@ -33,9 +35,9 @@ object License {
 }
 
 object GitHub {
-    const val connection = "scm:git:git://github.com:carlphilipp/compliance-logging.git"
-    const val developerConnection = "scm:git:https://github.com/carlphilipp/compliance-logging.git"
-    const val url = "https://github.com/carlphilipp/compliance-logging"
+    const val connection = "scm:git:git://github.com:SlalomBuild/compliance-logging.git"
+    const val developerConnection = "scm:git:https://github.com/SlalomBuild/compliance-logging.git"
+    const val url = "https://github.com/SlalomBuild/compliance-logging"
 }
 
 data class Organization(val name: String, val url: String)

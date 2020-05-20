@@ -135,6 +135,20 @@ subprojects {
                                 organization.set(Developer.carl.organization.name)
                                 organizationUrl.set(Developer.carl.organization.url)
                             }
+                            developer {
+                                id.set(Developer.antonio.id)
+                                name.set(Developer.antonio.name)
+                                email.set(Developer.antonio.email)
+                                organization.set(Developer.antonio.organization.name)
+                                organizationUrl.set(Developer.antonio.organization.url)
+                            }
+                            developer {
+                                id.set(Developer.rishi.id)
+                                name.set(Developer.rishi.name)
+                                email.set(Developer.rishi.email)
+                                organization.set(Developer.rishi.organization.name)
+                                organizationUrl.set(Developer.rishi.organization.url)
+                            }
                         }
                         scm {
                             connection.set(GitHub.connection)
