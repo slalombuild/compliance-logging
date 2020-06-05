@@ -28,7 +28,7 @@ if (shouldSignArtifacts()) {
 }
 
 subprojects {
-    group = "com.slalom"
+    group = "com.github.SlalomBuild"
     version = Version.project
 
     apply(plugin = "java-library")
