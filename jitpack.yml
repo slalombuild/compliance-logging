@@ -1,4 +1,4 @@
 jdk:
   - openjdk8
-install:
-  - ./gradlew clean -Pgroup=com.github.SlalomBuild build publishToMavenLocal
+#install:
+#  - ./gradlew clean -Pgroup=com.github.SlalomBuild build publishToMavenLocal
