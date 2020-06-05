@@ -4,7 +4,7 @@ object Version {
     // @formatter:off
     // Project
     val java                                = JavaVersion.VERSION_1_8.toString()
-    const val project                       = "0.0.1-SNAPSHOT"
+    const val project                       = "1.0.0"
 
     // Dependencies
     const val assertj                       = "3.15.0"
