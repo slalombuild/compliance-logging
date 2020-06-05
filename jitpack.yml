@@ -1,5 +1,4 @@
 jdk:
   - openjdk8
-#install:
-#  - echo "Running a custom install command"
-#  - ./gradlew clean -Pgroup=com.github.SlalomBuild build publishToMavenLocal
+install:
+  - ./gradlew clean -Pgroup=com.github.SlalomBuild build publishToMavenLocal

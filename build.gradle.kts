@@ -17,27 +17,10 @@ plugins {
     `maven-publish`
     checkstyle
     jacoco
-    maven
     signing
     id("com.github.sherter.google-java-format") version Version.google_format_gradle_plugin apply false
     id("io.freefair.lombok") version Version.lombok_gradle_plugin apply false
     id("com.dorongold.task-tree") version "1.5"
-}
-
-tasks.install {
-    repositories.withGroovyBuilder {
-        "mavenInstaller" {
-            "addFilter"("compliance-logging-core") {
-                getProperty("artifact").withGroovyBuilder { setProperty("name", "compliance-logging-core") }
-            }
-            "addFilter"("compliance-logging-log4j2") {
-                getProperty("artifact").withGroovyBuilder { setProperty("name", "compliance-logging-log4j2") }
-            }
-            "addFilter"("compliance-logging-logback") {
-                getProperty("artifact").withGroovyBuilder { setProperty("name", "compliance-logging-logback") }
-            }
-        }
-    }
 }
 
 if (shouldSignArtifacts()) {
