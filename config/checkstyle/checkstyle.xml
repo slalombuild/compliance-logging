@@ -29,7 +29,7 @@
     </module>
     <!-- https://checkstyle.org/config_filters.html#SuppressionFilter -->
     <module name="SuppressionFilter">
-        <property name="file" value="config/checkstyle/checkstyle-suppressions.xml"/>
+        <property name="file" value="${config_loc}/checkstyle-suppressions.xml"/>
         <property name="optional" value="false"/>
     </module>
 
@@ -46,7 +46,7 @@
     </module>
 
     <module name="Header">
-        <property name="headerFile" value="config/checkstyle/license.header"/>
+        <property name="headerFile" value="${config_loc}/license.header"/>
         <property name="ignoreLines" value="4"/>
         <property name="fileExtensions" value="java"/>
     </module>
