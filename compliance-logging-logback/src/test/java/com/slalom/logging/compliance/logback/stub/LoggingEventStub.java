@@ -26,8 +26,10 @@ import ch.qos.logback.classic.spi.IThrowableProxy;
 import ch.qos.logback.classic.spi.LoggerContextVO;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.List;
 import java.util.Map;
 import org.slf4j.Marker;
+import org.slf4j.event.KeyValuePair;
 
 public class LoggingEventStub implements ILoggingEvent {
 
@@ -100,6 +102,11 @@ public class LoggingEventStub implements ILoggingEvent {
   }
 
   @Override
+  public List<Marker> getMarkerList() {
+    return null;
+  }
+
+  @Override
   public Map<String, String> getMDCPropertyMap() {
     return null;
   }
@@ -113,6 +120,21 @@ public class LoggingEventStub implements ILoggingEvent {
   @Override
   public long getTimeStamp() {
     return LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+  }
+
+  @Override
+  public int getNanoseconds() {
+    return 0;
+  }
+
+  @Override
+  public long getSequenceNumber() {
+    return 0;
+  }
+
+  @Override
+  public List<KeyValuePair> getKeyValuePairs() {
+    return null;
   }
 
   @Override
