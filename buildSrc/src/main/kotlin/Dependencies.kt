@@ -13,7 +13,8 @@ object Version {
     const val junit                         = "5.6.2"
     const val log4j2                        = "2.13.1"
     const val logback                       = "1.2.3"
-    const val spring                        = "2.2.6.RELEASE"
+    const val logstash                      = "7.2"
+    const val spring                        = "2.7.0"
     const val slf4j                         = "1.7.30"
 
     // Gradle plugins
