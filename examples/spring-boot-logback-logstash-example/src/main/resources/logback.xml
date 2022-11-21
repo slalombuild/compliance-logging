@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <fieldName>ts</fieldName>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <pattern>
+                    <pattern>
+                        {
+                            "logger": "%logger",
+                            "level": "%level",
+                            "class": "%class",
+                            "method": "%method",
+                            "line": "%line",
+                            "file": "%file",
+                            "thread": "%thread"
+                        }
+                    </pattern>
+                </pattern>
+                <provider class="com.slalom.logging.compliance.logback.logstash.MaskingMessageJsonProvider">
+                    <fields>password,ssn</fields>
+                </provider>
+            </providers>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
